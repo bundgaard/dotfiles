@@ -1,0 +1,7 @@
+[color]
+	ui = true
+[user]
+	name = Bundgaard
+	email = "bundgaard@users.noreply.github.com"
+[format]
+	pretty = oneline

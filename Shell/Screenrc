@@ -1,0 +1,11 @@
+startup_message off
+defutf8 on
+nonblock on
+vbell off
+msgwait 10
+altscreen on
+term screen-256color
+hardstatus on
+hardstatus alwayslastline
+hardstatus alwayslastline '%{.kG}[ %{g}][%= %{wg}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+sorendition +b kG

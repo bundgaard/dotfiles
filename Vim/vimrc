@@ -1,0 +1,37 @@
+set nocompatible
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set autoindent
+set backspace=indent,eol,start "allow backspace over everything
+set bg=dark
+set ch=2
+set copyindent
+set history=1000
+set hlsearch
+set ignorecase
+set incsearch
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set laststatus=2
+let mapleader=","
+set noerrorbells
+set number
+set nowrap
+set pastetoggle=<F2>
+set ruler
+set showmatch
+set shiftround
+set showmatch
+set smartcase
+set smarttab
+set shiftwidth=4
+set smartindent
+set tabstop=4
+set textwidth=80
+set title
+set undolevels=1000
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+
+colorscheme zellner
