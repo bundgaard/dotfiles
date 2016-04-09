@@ -1,4 +1,16 @@
-test -z "${PS1}" && return;
+case $- in
+  *i*) ;;
+  *) return;;
+esac
+
+shopt -s -o notify
+shopt -s histappend
+shopt -s cdspell
+shopt -s checkhash
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s nocaseglob
+
 
 if [ $(uname) = "Darwin" ]
 then
@@ -12,7 +24,7 @@ then
     export PYTHON_HOME_MAC=$HOME/Library/Python/2.7
     export GOROOT=/usr/local/go
     export GOPATH=$HOME/Code
-	export JAVA_HOME=$(/usr/libexec/java_home)
+	  export JAVA_HOME=$(/usr/libexec/java_home)
     alias vim=/usr/local/bin/vim
     alias vi=/usr/local/bin/vi
     echo -n "Testing UTF-8: "
@@ -20,13 +32,11 @@ then
     /bin/cat $HOME/.TIPS >&2
 fi
 
-export ANT_HOME=$HOME/ant
-export MAVEN_HOME=$HOME/maven
 
 if [ $(uname) = "Linux" ]
 then
-    export NPM_PACKAGES=$HOME/.npm-packages
-    export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
+  export NPM_PACKAGES=$HOME/.npm-packages
+  export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 	export JAVA_HOME=$HOME/jdk
 	export GROOVY_HOME=$HOME/groovy
 	export GOROOT=$HOME/go
@@ -36,14 +46,8 @@ then
 	alias mysearch="sudo apt-cache search"
 	alias myinstall="sudo apt-get install -y"
 	alias myupdate="sudo apt-get update"
+  alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 fi
-shopt -s -o notify
-shopt -s histappend
-shopt -s cdspell
-shopt -s checkhash
-shopt -s checkwinsize
-shopt -s cmdhist
-shopt -s nocaseglob
 
 
 function check_ca_hash() {
@@ -63,11 +67,13 @@ export LESS='-FRsX'
 export EDITOR='vi'
 export MANPAGER='less'
 export PAGER='less'
-
+export ANT_HOME=$HOME/ant
+export MAVEN_HOME=$HOME/maven
+export LOCAL_HOME=/usr/local
 unset MANPATH
 export MANPATH=$HOME/man:$HOME/perl5/man:$(manpath)
 unset PATH
-export PATH=$PYTHON_HOME_MAC/bin:$NPM_PACKAGES/bin:$GOROOT/bin:$JAVA_HOME/bin:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLEHOME/bin:$GROOVY_HOME/bin:$HOME/bin:$HOME/perl5/bin:/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+export PATH=$LOCAL_HOME/bin:$PYTHON_HOME_MAC/bin:$NPM_PACKAGES/bin:$GOROOT/bin:$JAVA_HOME/bin:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLEHOME/bin:$GROOVY_HOME/bin:$HOME/bin:$HOME/perl5/bin:/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 
 
 PS1="[\w\\$] "
@@ -75,4 +81,16 @@ if [ `uname` = "Darwin" ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
     source /Users/dbundgaard/Library/Python/2.7/bin/virtualenvwrapper.sh
 fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 test -d $HOME/perl5 && eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
