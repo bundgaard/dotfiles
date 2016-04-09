@@ -70,7 +70,7 @@ unset PATH
 export PATH=$PYTHON_HOME_MAC/bin:$NPM_PACKAGES/bin:$GOROOT/bin:$JAVA_HOME/bin:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLEHOME/bin:$GROOVY_HOME/bin:$HOME/bin:$HOME/perl5/bin:/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 
 
-export PS1="[\w\\$] "
+PS1="[\w\\$] "
 if [ `uname` = "Darwin" ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
     source /Users/dbundgaard/Library/Python/2.7/bin/virtualenvwrapper.sh
